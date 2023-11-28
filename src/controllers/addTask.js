@@ -1,30 +1,32 @@
-import taskModel from "../models/task.js"
+import taskModel from '../models/task.js';
 
-export const addTask  = async(req, res) => {
+export const addTask = async (req, res) => {
 
-    const { 
-      task, 
-      description, 
-      priority, 
-      startDate, 
-      endDate 
-    } = req.body;
-    try{
-      const newTask = await taskModel.create({
-        task,
-        description,
-        priority,
-        startDate,
-        endDate
-      })
-      return res.json({
-         msg: 'add successfully',
-         newTask
-      }).status(201);
+  const {
+    task,
+    description,
+    priority,
+    startDate,
+    endDate
+  } = req.body;
 
-    }catch(error){
-        res.json({
-            msg: 'error '
-        })
-    }
-}
+  try {
+    const newTask = await taskModel.create({
+      task,
+      description,
+      priority,
+      startDate,
+      endDate
+    });
+
+    return res.json({
+      msg: 'add successfully',
+      newTask
+    }).status(201);
+
+  } catch (error) {
+    res.json({
+      msg: 'error '
+    });
+  }
+};

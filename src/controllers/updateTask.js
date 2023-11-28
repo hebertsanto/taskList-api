@@ -1,24 +1,26 @@
-import taskModel from "../models/task.js"
+import taskModel from '../models/task.js';
 
-export const updateTask  = async(req, res) => {
-    const { id } = req.params;
+export const updateTask = async (req, res) => {
 
-    try{
-      const updateTask = await taskModel.findByIdAndUpdate(id, req.body);
+  const { id } = req.params;
 
-      if(!updateTask){
-         res.json({
-            msg:'task not found'
-         })
-      }
-      
-      return res.json({
-       msg:'update task successfully',
-      }).status(200);
+  try {
 
-    }catch(error){
-        res.json({
-            msg: 'error '
-        })
+    const updateTask = await taskModel.findByIdAndUpdate(id, req.body);
+
+    if (!updateTask) {
+      res.json({
+        msg: 'task not found'
+      });
     }
-}
+
+    return res.json({
+      msg: 'update task successfully',
+    }).status(200);
+
+  } catch (error) {
+    return res.json({
+      msg: 'error'
+    });
+  }
+};
